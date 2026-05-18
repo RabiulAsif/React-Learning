@@ -1,31 +1,30 @@
-const NetflixSeries = () => {
-const Summary = "A group of friends navigate the ups and downs of life in this heartwarming comedy.";
-const Name = "Friends";
+import seriesData from "../api/seriesData.json";
 
-let age = 8;
-
-let canWatch = "Not available";
-
-if (age >= 18) {
-  canWatch = "Watch now";
-}
-
-const returnGenre = () => {
-  const genre = "Comedy";
-  return genre;
-};
-
+export const NetflixSeries = () => {
 return (
-  <div>
-    <div>
-      <img src="download.jpg" alt="an image" width="40%" height="40%" />
-      </div>
-        <h2>Name: {Name}</h2>
-        <h3>Rating: {6/3.2}</h3>
-        <p>Summary: {Summary}</p>
-        <p>Genre: {returnGenre()}</p>
-        <button>{canWatch}</button>
-      </div>
+  <ul>
+    {seriesData.map((curElem) => {
+      return (
+        <li key={curElem.id}>
+          <div>
+            <img 
+              src={curElem.img_url} 
+              alt={curElem.name} 
+              width="40%" 
+              height="40%" />
+          </div>
+          <h2>Name: {curElem.name}</h2>
+          <h3>Rating: {curElem.rating}</h3>
+          <p>Summary: {curElem.description}</p>
+          <p>Genre: {curElem.genre}</p>
+          <p>Cast: {curElem.cast}</p>
+          <a href={curElem.watch_url} target="_blank">
+            <button>Watch now</button>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
 );
 };
 export default NetflixSeries;
